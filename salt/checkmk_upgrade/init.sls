@@ -22,10 +22,16 @@ install_checkmk:
 
 install_checkmk:
   cmd.run:
-    - name: yum install -y /tmp/check-mk-agent.rpm
+    - name: rpm -Uvh /tmp/check-mk-agent.rpm
     - unless: # Run command yum install if only package isn't installed
       - rpm -q check-mk-agent-1.5.0p19-1.noarch
 
+/usr/lib/check_mk_agent/plugins/mk_logins:
+  file.managed:
+    - source: salt://checkmk_upgrade/files/mk_logins
+    - user: root
+    - group: root
+    - mode: 770
 
 {% endif %}
 
