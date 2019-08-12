@@ -1,3 +1,13 @@
+xinetd:
+  pkg.latest:
+    - pkgs:
+      - xinetd
+  service.running:
+    - enable: True
+    - reload: True
+    - require:
+      - pkg: xinetd
+
 {% if grains['os'] == 'Ubuntu' %}
 /tmp/check-mk-agent.deb:
   file.managed:
@@ -31,16 +41,6 @@ install_checkmk:
     - mode: 770
 
 {% endif %}
-
-xinetd:
-  pkg.latest:
-    - pkgs:
-      - xinetd
-  service.running:
-    - enable: True
-    - reload: True
-    - require:
-      - pkg: xinetd
 
 /etc/xinetd.d/check_mk:
   file.managed:
