@@ -15,3 +15,10 @@ service salt-minion start
 ```
 
 In salt master accept new key. Done
+
+- Change Salt Minion ID:
+Change in `/etc/salt/minion_id`
+Restart salt-minion service
+Then in Salt Master
+- Delete Old salt-key of minion
+- Accept new salt-key of minion
