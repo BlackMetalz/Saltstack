@@ -22,3 +22,14 @@ Restart salt-minion service
 Then in Salt Master
 - Delete Old salt-key of minion
 - Accept new salt-key of minion
+
+
+- Salt minion duplicate?: Possible double or more salt-minion services are running
+grep them by:
+```
+ps -ef | grep salt-minion
+```
+
+then kill them all and start salt-minion service again. Then it will be ok ( From my experience while using saltstack )
+
+- Can't see salt minion key in salt master?  : check firewall
