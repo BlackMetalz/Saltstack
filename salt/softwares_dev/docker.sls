@@ -1,21 +1,47 @@
-# Note: This only works for centos. I haven't make for ubuntu yet.
+basic_package:
+  pkg.installed:
+    - pkgs:
+      - curl
 
-remove_old_docker:
-  cmd.run:
-    - name: 'yum remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine -y'
+{% if grains['os'] == 'CentOS' %}
 
-setup_the_repository:
+remove_old:
+  pkg.removed:
+    - pkgs: ["docker","docker-client","docker-client-latest","docker-common","docker-latest","docker-latest-logrotate","docker-logrotate","docker-engine","docker-ce-cli","docker-ce"]
   cmd.run:
-    - name: 'yum install -y yum-utils device-mapper-persistent-data lvm2'
+    - names:
+      - yum install -y yum-utils device-mapper-persistent-data lvm2
+      - yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 
-setup_stable_repository:
-  cmd.run:
-    - name: 'yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo'
+{% elif grains['os'] == 'Ubuntu' %}
 
-install_docker_engine_community:
-  cmd.run:
-    - name: 'yum install docker-ce docker-ce-cli containerd.io -y'
+remove_old:
+  pkg.removed:
+    - pkgs: ["docker", "docker-engine", "docker.io", "containerd", "runc", "docker-ce", "docker-ce-cli"]
 
-docker_service:
+run_update:
   cmd.run:
-    - name: 'service docker restart'
+    - name: "apt-get update"
+
+install_required:
+  pkg.installed:
+    - pkgs: ["apt-transport-https","ca-certificates","gnupg-agent","software-properties-common"]
+
+run_some_shiet:
+  cmd.run:
+    - names:
+      - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+      - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+      - apt update
+
+{% endif %}
+
+state_install_docker:
+  pkg.installed:
+    - pkgs: ["docker-ce","docker-ce-cli","containerd.io"]
+
+docker_test:
+  cmd.run:
+    - names:
+      - service docker restart
+      - docker run --rm  hello-world
