@@ -3,6 +3,7 @@ basic_package:
     - pkgs:
       - curl
 
+
 {% if grains['os'] == 'CentOS' %}
 
 remove_old:
@@ -26,8 +27,8 @@ run_update:
 install_required:
   pkg.installed:
     - pkgs: ["apt-transport-https","ca-certificates","gnupg-agent","software-properties-common"]
-
-run_some_shiet:
+    
+    run_some_shiet:
   cmd.run:
     - names:
       - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -39,6 +40,16 @@ run_some_shiet:
 state_install_docker:
   pkg.installed:
     - pkgs: ["docker-ce","docker-ce-cli","containerd.io"]
+
+/etc/docker/daemon.json:
+  file.managed:
+    - source: salt://softwares_dev/files/daemon.json
+    - user: root
+    - group: root
+    - template: jinja
+    - context:
+      data_root : {{ salt['pillar.get']('data_root') }}
+      bip : {{ salt['pillar.get']('bip') }}
 
 docker_test:
   cmd.run:
