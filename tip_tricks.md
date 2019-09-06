@@ -33,3 +33,8 @@ ps -ef | grep salt-minion
 then kill them all and start salt-minion service again. Then it will be ok ( From my experience while using saltstack )
 
 - Can't see salt minion key in salt master?  : check firewall
+
+
+- This trick is just awesome:
+
+salt-key | grep -E "33\.(112|113|114)" | while read var; do salt $var network.ip_addrs; done;
