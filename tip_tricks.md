@@ -39,6 +39,11 @@ then kill them all and start salt-minion service again. Then it will be ok ( Fro
 
 salt-key | grep -E "33\.(112|113|114)" | while read var; do salt $var network.ip_addrs; done;
 
+- List all job running:
+```
+salt-run jobs.active
+```
+
 - Kill "SaltStack: The function “state.apply” is running as PID xxxx and was started at xxxx with jid xxxx"
 ```
 # kill the job id
