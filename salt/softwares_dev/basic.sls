@@ -1,7 +1,8 @@
 {% if grains['os'] == 'CentOS' %}
-pkg.installed:
-  - pkgs:
-    - epel-release
+install_spel_release:
+  pkg.installed:
+    - pkgs:
+      - epel-release
 {% endif %}
 
 install_basic_softwares:
