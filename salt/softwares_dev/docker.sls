@@ -47,6 +47,7 @@ state_install_docker:
     - user: root
     - group: root
     - template: jinja
+    - mode: '0644'
     - context:
       data_root : {{ salt['pillar.get']('data_root') }}
       bip : {{ salt['pillar.get']('bip') }}
