@@ -51,4 +51,10 @@ salt '*' saltutil.kill_job <job id>
 # kill all jobs
 salt '*' saltutil.kill_all_jobs
  ```
+ 
+ - Escape $ character in salt cmd.run
+ ```
+ salt kienlt-lab-48.54 cmd.run "lsof | awk '{print \$1}'"
+ ```
+ 
 
