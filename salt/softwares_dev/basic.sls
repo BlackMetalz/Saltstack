@@ -12,5 +12,4 @@ install_basic_softwares:
       - htop
       - screen
       - telnet
-      - nc
 
