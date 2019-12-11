@@ -57,4 +57,5 @@ docker_test:
   cmd.run:
     - names:
       - service docker restart
+      - systemctl enable docker
       - docker run --rm  hello-world
