@@ -1,0 +1,16 @@
+file_roots:
+  windows:
+    - /srv/salt/states
+
+#pillar_roots:
+#  windows:
+#    - /srv/salt/win/salt-windows/pillar
+
+#####  Windows Software Repo settings #####
+###########################################
+# Location of the repo on the master:
+winrepo_dir_ng: '/srv/salt/win/salt-winrepo-ng'
+#
+# List of git repositories to include with the local repo:
+winrepo_remotes_ng:
+  - https://github.com/saltstack/salt-winrepo-ng.git
