@@ -2,7 +2,6 @@
 
 - You have to run those command with in location /srv/salt/win  to init salt win repo
 ```
-salt-run winrepo.genrepo
 salt-run winrepo.update_git_repos
 salt -G 'os:windows' pkg.refresh_db
 ```
