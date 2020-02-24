@@ -62,7 +62,7 @@ salt minion_id pkg.list_pkgs
 
 - Then remove with pkg_name from list_pkgs 
 ```
-salt minion_id pkg.remove pkg_n
+salt minion_id pkg.remove pkg_name
 ```
 
 with package come from salt-winrepo-ng
