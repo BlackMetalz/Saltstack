@@ -55,9 +55,14 @@ You will see something like this appear:
 salt minion_id pkg.install xampp
 ```
 
-- Uninstall 
+- List installed package in minion
 ```
-salt minion_id pkg.remove xampp
+salt minion_id pkg.list_pkgs
+```
+
+- Then remove with pkg_name from list_pkgs 
+```
+salt minion_id pkg.remove pkg_n
 ```
 
 with package come from salt-winrepo-ng
