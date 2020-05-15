@@ -56,5 +56,22 @@ salt '*' saltutil.kill_all_jobs
  ```
  salt kienlt-lab-48.54 cmd.run "lsof | awk '{print \$1}'"
  ```
+ - [ERROR   ] The Salt Master has cached the public key for this node, this salt minion will wait for 10 seconds before attempting to re-authenticate SOLUTION
  
+ in salt-minion: 
+ ```
+ # salt-call test.ping
+ [ERROR   ] The master key has changed, the salt master could have been subverted, verify salt master's public key
+[CRITICAL] The Salt Master server's public key did not authenticate!
+The master may need to be updated if it is a version of Salt lower than 3000.3, or
+If you are confident that you are connecting to a valid Salt Master, then remove the master public key and restart the Salt Minion.
+The master public key can be found at:
+/etc/salt/pki/minion/minion_master.pub
+Invalid master key
+# remove salt-key in master before do step below 
+root@rancher2-proxy-48:/etc/salt# rm /etc/salt/pki/minion/minion_master.pub 
+root@rancher2-proxy-48:/etc/salt# service salt-minion restart
+```
+
+
 
