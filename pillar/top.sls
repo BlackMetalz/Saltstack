@@ -8,6 +8,6 @@ base:
   'specific-minion-id,minion-id-exactly':
     - match: list
     - users.server1
-  'server-regex0*,server-regex1*':
+  'server-regex0* or server-regex1*':
     - match: compound
     - users.server-regex
