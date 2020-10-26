@@ -5,6 +5,11 @@
 salt -G os_family:Redhat test.ping
 `
 
+- matched oscodename ( ubuntu 20 focal ) :
+```
+salt -G oscodename:focal cmd.run "date"
+```
+
 - Test ping if matched OS and name like:
 `
 salt -C 'G@os_family:RedHat and sysadmin*' test.ping
