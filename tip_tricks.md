@@ -73,5 +73,23 @@ root@rancher2-proxy-48:/etc/salt# rm /etc/salt/pki/minion/minion_master.pub
 root@rancher2-proxy-48:/etc/salt# service salt-minion restart
 ```
 
+- Reset linux password with salt
+Gen shadow pass:
+```
+salt minionid shadow.gen_password 'wtfboyz'
+```
+
+output:
+```
+$6$Kr4EWBMR$5s.TDUwSdar3CvFlH60xPufgrSLid6nuZUQJbwYD2Tafpobj1PbcuGrKo3PkhKnKS9X/7jDG/b2JmpwhV1Y7V1
+```
+
+Reset:
+```
+salt minionid shadow.set_password username '$6$Kr4EWBMR$5s.TDUwSdar3CvFlH60xPufgrSLid6nuZUQJbwYD2Tafpobj1PbcuGrKo3PkhKnKS9X/7jDG/b2JmpwhV1Y7V1'
+```
+
+
+
 
 
