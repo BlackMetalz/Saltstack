@@ -15,6 +15,11 @@ salt -G oscodename:focal cmd.run "date"
 salt -C 'G@os_family:RedHat and sysadmin*' test.ping
 `
 
+- Ping if it is centos 7:
+```
+salt -G osfinger:'CentOS Linux-7' test.ping
+```
+
 - Show document and how to use this:
 `
 salt server101 sys.doc test.ping
